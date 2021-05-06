@@ -86,10 +86,11 @@ namespace Nonograma
                     if (datosColumnas[i][j] != ',')
                     {
                         Console.Write(datosColumnas[i][j]);
+
                     }
                     else
                     {
-                        Console.SetCursorPosition(maxDatosCol + 3 + i * 2, j + 1);
+                        Console.SetCursorPosition(maxDatosCol + 3 + i * 2, j);
                     }
                 }
 

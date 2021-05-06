@@ -11,3 +11,16 @@ C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\N
 C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.dll
 C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.pdb
 C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.genruntimeconfig.cache
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\bin\Debug\netcoreapp3.1\Nonograma.exe
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\bin\Debug\netcoreapp3.1\Nonograma.deps.json
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\bin\Debug\netcoreapp3.1\Nonograma.runtimeconfig.json
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\bin\Debug\netcoreapp3.1\Nonograma.runtimeconfig.dev.json
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\bin\Debug\netcoreapp3.1\Nonograma.dll
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\bin\Debug\netcoreapp3.1\Nonograma.pdb
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.csprojAssemblyReference.cache
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.AssemblyInfoInputs.cache
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.AssemblyInfo.cs
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.csproj.CoreCompileInputs.cache
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.dll
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.pdb
+C:\Users\Eli Todd\Documents\1º DESARROLLO DE VIDEOJUEGOS\2º Cuatrimestre\FP2\Proyecto-FP2\Nonograma\Nonograma\obj\Debug\netcoreapp3.1\Nonograma.genruntimeconfig.cache
