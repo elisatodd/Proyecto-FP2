@@ -39,9 +39,9 @@ namespace Nonograma
 
             for (int i = 0; i < columnas; i++)
             { // Si es una columna con comas, se comprueba si su tamaño es mayor (hay que añadir otra fila para la visualización)
-                if (datosColumnas[i].Contains(",") && datosColumnas[i].Split(',').Length > maxDatosFil)
+                if (datosColumnas[i].Contains(",") && datosColumnas[i].Split(',').Length > maxDatosCol)
                 {
-                    maxDatosFil = datosColumnas[i].Split(',').Length;
+                    maxDatosCol = datosColumnas[i].Split(',').Length;
                 }
             }
 
@@ -49,9 +49,10 @@ namespace Nonograma
             int filas = datosFilas.Length; // Determinamos el número de filas (2º dato)
             for (int i = 0; i < filas; i++)
             { // Si es una fila con comas, se comprueba si su tamaño es mayor (hay que añadir otra columna para la visualización)
-                if (datosFilas[i].Contains(",") && datosFilas[i].Split(',').Length > maxDatosCol)
+
+                if (datosFilas[i].Contains(",") && datosFilas[i].Split(',').Length > maxDatosFil)
                 {
-                    maxDatosCol = datosFilas[i].Split(',').Length;
+                    maxDatosFil = datosFilas[i].Split(',').Length;
                 }
             }
 
@@ -75,95 +76,106 @@ namespace Nonograma
 
         public void Dibuja() 
         {
-            // En primer lugar escribo los datos
-                // Datos de las columnas
-            Console.SetCursorPosition(maxDatosCol + 3, 0); // Dos huecos para el número, y uno entre medias
+            int cont = 0; // variable que ayudará con el dibujo 
 
+                // En primer lugar escribo los datos
+                // Datos de las columnas
+            Console.SetCursorPosition(maxDatosFil*2 + 2, 0); // Lo que ocupan los datos de la izquierda, más el centrado
             for (int i = 0; i < datosColumnas.Length; i++)
             {
                 for (int j = 0; j < datosColumnas[i].Length; j++)
                 {
                     if (datosColumnas[i][j] != ',')
                     {
+                        cont++;
                         Console.Write(datosColumnas[i][j]);
-
                     }
                     else
                     {
-                        Console.SetCursorPosition(maxDatosCol + 3 + i * 2, j);
+                        Console.SetCursorPosition(maxDatosFil*2 + 4*(i) + 2, cont);
                     }
                 }
+                cont = 0;
+                Console.SetCursorPosition(maxDatosFil*2 + 4*(i + 1) + 2, 0); 
+            }/// ESTO ESTÁ BIEN PARA EL ANCHO 4, SI ES ANCHO DOS, SE CAMBIA EL 4 POR UN 2 Y SE QUITA EL + 2
 
-                Console.SetCursorPosition(maxDatosCol + 3 + (i + 1) * 2, 0);
-            }
+
                 // Datos de las filas
-            Console.SetCursorPosition(0, maxDatosCol); 
-
+            Console.SetCursorPosition(0, maxDatosCol);
             for (int i = 0; i < datosFilas.Length; i++)
             {
                 for (int j = 0; j < datosFilas[i].Length; j++)
                 {
                     if (datosFilas[i][j] != ',')
                     {
-                        Console.Write(datosFilas[i][j]);
-                    }
-                    else
-                    {
-                        Console.SetCursorPosition(j + 2, maxDatosFil + i);
+                        Console.Write(datosFilas[i][j] + " ");
                     }
                 }
 
-                Console.SetCursorPosition(0 , maxDatosCol + (i + 1));
+                Console.SetCursorPosition(0 , maxDatosCol + (i+1)*2); /// SI SE HACE DE TAMAÑO MENOR, QUITAR *2
             }
 
             // Hay que cambiar la posición del puntero: 
-            Console.SetCursorPosition(maxDatosCol + 3, maxDatosFil); // Dos huecos para el número, y uno entre medias
+            Console.SetCursorPosition(maxDatosFil*2, maxDatosCol); // Dos huecos para el número, y uno entre medias
 
             // Ahora dibujo el tablero en sí
+            cont = 1;
             // Además, si estoy en esa fila y columna concretas, se dibujan diferente
             for (int n = 0; n < tab.GetLength(0); n++)
             {
-                for (int m = 0; m < tab.GetLength(1); m++)
+                for (int j = 1; j < 3; j++)
                 {
-                    if (tab[n,m] == Casillas.Coloreada)
+                    for (int m = 0; m < tab.GetLength(1); m++)
                     {
-                        if (jugador.fil == n || jugador.col == m)
+                        if (tab[n, m] == Casillas.Coloreada)
                         {
-                            Console.BackgroundColor = ConsoleColor.Cyan;
+                            if (jugador.fil == n || jugador.col == m)
+                            {
+                                Console.BackgroundColor = ConsoleColor.Cyan;
+                            }
+                            else
+                            {
+                                Console.BackgroundColor = ConsoleColor.DarkGray;
+                            }
+                            Console.Write("    ");
                         }
-                        else
+                        else if (tab[n, m] == Casillas.Tachada)
                         {
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            if (jugador.fil == n || jugador.col == m)
+                            {
+                                Console.BackgroundColor = ConsoleColor.Cyan;
+                            }
+                            else
+                            {
+                                Console.BackgroundColor = ConsoleColor.White;
+                            }
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            
+                            if (j == 1) // En la "primera vuelta"
+                            {
+                                Console.Write("  / ");
+                            }
+                            else
+                            {
+                                Console.Write(" /  ");
+                            }
                         }
-                        Console.Write("  ");
-                    }else if (tab[n, m] == Casillas.Tachada)
-                    {
-                        if (jugador.fil == n || jugador.col == m)
+                        else if (tab[n, m] == Casillas.Libre)
                         {
-                            Console.BackgroundColor = ConsoleColor.Cyan;
+                            if (jugador.fil == n || jugador.col == m)
+                            {
+                                Console.BackgroundColor = ConsoleColor.Cyan;
+                            }
+                            else
+                            {
+                                Console.BackgroundColor = ConsoleColor.White;
+                            }
+                            Console.Write("    ");
                         }
-                        else
-                        {
-                            Console.BackgroundColor = ConsoleColor.White;
-                        }
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("XX");
-                    }else if (tab[n, m] == Casillas.Libre)
-                    {
-                        if (jugador.fil == n || jugador.col == m)
-                        {
-                            Console.BackgroundColor = ConsoleColor.Cyan;
-                        }
-                        else
-                        {
-                            Console.BackgroundColor = ConsoleColor.White;
-                        }
-                        Console.Write("  ");
                     }
+                    Console.SetCursorPosition(maxDatosFil*2, maxDatosCol + cont);
+                    cont++;
                 }
-                Console.WriteLine();
-                // Le sumo 1 en la 2ª coordenada para que no se sobreescriba el tablero
-                Console.SetCursorPosition(maxDatosCol + 3, maxDatosFil + 1 + n); 
             }
 
             // Reseteo de los colores

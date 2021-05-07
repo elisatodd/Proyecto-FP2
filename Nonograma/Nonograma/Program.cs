@@ -7,7 +7,7 @@ namespace Nonograma
         static bool Debug = false;
         static void Main(string[] args)
         {
-            Tablero tab = new Tablero(1);
+            Tablero tab = new Tablero(0);
 
             tab.Dibuja();
 
