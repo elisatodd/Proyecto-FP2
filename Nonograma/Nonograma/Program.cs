@@ -25,7 +25,21 @@ namespace Nonograma
                         Console.Clear();
                     }
 
-                    tab.Mueve(c);
+                    if (c == 'l' || c == 'r' || c == 'u' || c == 'd')
+                    {
+                        tab.Mueve(c);
+                    }
+                    else if (c == 'o')
+                    {
+                        tab.Colorea();
+                    }else if (c == 'x')
+                    {
+                        tab.Tacha();
+                    }else if (c == 'b')
+                    {
+                        tab.Borra();
+                    }
+
                     tab.Dibuja();
                     c = ' ';
                 }

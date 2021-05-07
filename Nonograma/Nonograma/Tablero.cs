@@ -89,6 +89,12 @@ namespace Nonograma
                     {
                         cont++;
                         Console.Write(datosColumnas[i][j]);
+                        // Si el dato tiene dos cifras
+                        if ( (j+1) < datosColumnas[i].Length && datosColumnas[i][j+1] != ',')
+                        {
+                            Console.Write(datosColumnas[i][j + 1]);
+                            j++;
+                        }
                     }
                     else
                     {
@@ -108,7 +114,14 @@ namespace Nonograma
                 {
                     if (datosFilas[i][j] != ',')
                     {
-                        Console.Write(datosFilas[i][j] + " ");
+                        Console.Write(datosFilas[i][j]);
+                        // Si el dato tiene dos cifras
+                        if ((j+1) < datosFilas[i].Length && datosFilas[i][j+1] != ',')
+                        {
+                            Console.Write(datosFilas[i][j+1]);
+                            j++;
+                        }
+                        Console.Write(" ");
                     }
                 }
 
@@ -131,7 +144,7 @@ namespace Nonograma
                         {
                             if (jugador.fil == n || jugador.col == m)
                             {
-                                Console.BackgroundColor = ConsoleColor.Cyan;
+                                Console.BackgroundColor = ConsoleColor.DarkCyan;
                             }
                             else
                             {
@@ -228,6 +241,24 @@ namespace Nonograma
 
         }
 
+
+        // Pone el valor de la casilla actual como coloreada (en negro)
+        public void Colorea()
+        {
+            tab[jugador.fil, jugador.col] = Casillas.Coloreada;
+        }
+
+        // Pone el valor de la casilla actual como tachada (con una cruz)
+        public void Tacha()
+        {
+            tab[jugador.fil, jugador.col] = Casillas.Tachada;
+        }
+
+        // Pone el valor de la casilla actual como libre (sin nada)
+        public void Borra()
+        {
+            tab[jugador.fil, jugador.col] = Casillas.Libre;
+        }
 
     }
 }
