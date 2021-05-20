@@ -13,7 +13,7 @@ namespace Nonograma
 
             char c = ' ';
 
-            while (true) // Bucle principal de juego
+            while (!tab.TableroCompletado()) // Bucle principal de juego
             {
                 c = LeeInput();
                 

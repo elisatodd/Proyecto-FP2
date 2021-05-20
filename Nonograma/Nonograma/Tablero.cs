@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using Nonograma;
 
 namespace Nonograma
 {
@@ -9,11 +10,12 @@ namespace Nonograma
     {
         // Los cuatro posibles valores de una casilla
         enum Casillas { Libre, Coloreada, Tachada};
-        Casillas[,] tab;
-        string[] datosFilas, datosColumnas;
-        int maxDatosFil, maxDatosCol;
-        Coor jugador;
-
+        Casillas[,] tab; // Tablero de juego
+        string[] datosFilas, datosColumnas; // Contienen los datos sobre qué debe colocarse en cada casilla
+        int maxDatosFil, maxDatosCol; // Indican el espacio que se debe dejar entre el borde de la consola y el tablero
+        Coor jugador; // Posición del jugador
+        // Contiene los datos necesarios para que la condición del juego se complete
+        Lista listaDatos = new Lista();
 
         public Tablero(int n) // Crea un tablero del nivel indicado 
         {
@@ -34,11 +36,12 @@ namespace Nonograma
             maxDatosFil = 1;
 
             datosColumnas = levels.ReadLine().Split(" ");
-            // Determinamos el nº de columnas (1º dato)
+            // Determinamos el nº de columnas (1er dato)
             int columnas = datosColumnas.Length;
 
             for (int i = 0; i < columnas; i++)
-            { // Si es una columna con comas, se comprueba si su tamaño es mayor (hay que añadir otra fila para la visualización)
+            {
+                // Si es una columna con comas, se comprueba si su tamaño es mayor (hay que añadir otra fila para la visualización)
                 if (datosColumnas[i].Contains(",") && datosColumnas[i].Split(',').Length > maxDatosCol)
                 {
                     maxDatosCol = datosColumnas[i].Split(',').Length;
@@ -67,6 +70,19 @@ namespace Nonograma
                 {
                     tab[i, j] = Casillas.Libre;
                 }
+            }
+
+            // Se rellena la lista de datos: Sólo hace falta comprobar una: filas o columnas, si una está correcta, la otra también lo estará
+            for (int i = 0; i < datosColumnas.Length; i++)
+            {
+                for (int j = 0; j < datosColumnas[i].Length; j++)
+                {
+                    if (datosColumnas[i][j] != ',')
+                    {
+                        listaDatos.InsertaFinal(int.Parse(datosColumnas[i][j].ToString()));
+                    }
+                }
+                listaDatos.InsertaFinal(0); // El 0 indica cambio de columna
             }
 
             // Se le asigna al jugador una posición inicial
@@ -260,5 +276,72 @@ namespace Nonograma
             tab[jugador.fil, jugador.col] = Casillas.Libre;
         }
 
+
+        // Determina si el tablero está completo o no:
+        // Está completo si se cumplen todas las condiciones
+        public bool TableroCompletado()
+        {
+            bool completado = true;
+
+            Lista tableroActual = new Lista();
+
+            // Lleva la cuenta de la última posición que se ha escrito en la lista
+            // sirve para pasar a la siguiente posición cuando se cambia de columna
+            // y cuando hay separaciones dentro de una misma columna
+            int cont = 0;
+
+            // Se rellena la lista de datos actuales con la información del tablero
+            for (int i = 0; i < tab.GetLength(1); i++)
+            {
+                for (int j = 0; j < tab.GetLength(0); j++)
+                {
+                    if (tab[j,i] == Casillas.Coloreada)
+                    {
+                        try{ // si es la n-esima casilla de un grupo de casillas seguidas
+                            tableroActual.InsertaNesimo(cont, tableroActual.nEsimo(cont) + 1);
+                            tableroActual.BorraUltimoNodo();
+                        }
+                        catch (Exception k)
+                        { // es la primera casilla de un grupo de casillas seguidas
+                            tableroActual.InsertaFinal(1);
+                        }
+
+                        if (j == tab.GetLength(0) - 1)// última posición de la columna
+                        {
+                            cont++;
+                        }
+                    }
+                    else // es un espacio en blanco o tachado
+                    {
+                        try
+                        {
+                            if (tableroActual.nEsimo(cont) >= 0)
+                            {
+                                cont++;
+                            }
+                        }
+                        catch (Exception k)
+                        {
+                        }
+                    }
+                }
+                tableroActual.InsertaFinal(0); // El 0 indica cambio de columna
+                cont++;
+            }
+
+            int n = 0;
+            // Compara el estado actual con el de listaDatos (el correcto)
+            while (n < listaDatos.CuentaEltos() && completado)
+            {
+                // Compara cada elemento de la lista
+                if (tableroActual.nEsimo(n) != listaDatos.nEsimo(n))
+                {
+                    completado = false;
+                }
+                n++;
+            }
+
+            return completado;
+        }
     }
 }
